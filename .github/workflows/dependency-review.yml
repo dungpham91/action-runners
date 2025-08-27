@@ -1,0 +1,23 @@
+name: PR Dependency Review
+
+on: [pull_request]
+
+### Ensures that only one CI task per branch/environment will run at a time ###
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@bc41886e18ea39df68b1b1245f4184881938e050 # v4.7.2
