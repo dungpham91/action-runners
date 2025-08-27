@@ -81,8 +81,8 @@ build {
   sources = ["source.docker.ubuntu"]
 
   provisioner "shell" {
-    inline = ["apt-get update", "apt-get upgrade -y", "apt-get install -y build-essential git wget curl pkg-config libssl-dev apt-utils"]
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    inline = ["apt-get update", "apt-get upgrade -y", "apt-get install -y build-essential sudo git wget curl pkg-config libssl-dev apt-utils"]
+    execute_command = "sh -c '{{ .Vars }} {{ .Path }}'"
   }
 
   post-processor "docker-tag" {
