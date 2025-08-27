@@ -14,10 +14,10 @@ rm -rf /tmp/*
 rm -rf /root/.cache
 
 # journalctl
-if command -v journalctl; then
-    journalctl --rotate
-    journalctl --vacuum-time=1s
-fi
+# if command -v journalctl; then
+#     journalctl --rotate
+#     journalctl --vacuum-time=1s
+# fi
 
 # delete all .gz and rotated file
 find /var/log -type f -regex ".*\.gz$" -delete
@@ -26,8 +26,8 @@ find /var/log -type f -regex ".*\.[0-9]$" -delete
 # wipe log files
 find /var/log/ -type f -exec cp /dev/null {} \;
 
-# delete symlink for tests running
-rm -f /usr/local/bin/invoke_tests
+# # delete symlink for tests running
+# rm -f /usr/local/bin/invoke_tests
 
 # remove apt mock
 prefix=/usr/local/bin
