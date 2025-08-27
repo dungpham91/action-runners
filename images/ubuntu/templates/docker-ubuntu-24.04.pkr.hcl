@@ -81,7 +81,7 @@ build {
   sources = ["source.docker.ubuntu"]
 
   provisioner "shell" {
-    inline = ["apt-get -yq update", "apt-get upgrade -y", "apt-get install -y build-essential sudo git wget curl pkg-config libssl-dev apt-utils lsb-release"]
+    inline = ["apt-get -yq update", "apt-get -yq upgrade", "apt-get install -y apt-utils build-essential sudo git wget curl pkg-config libssl-dev lsb-release"]
     execute_command = "sh -c '{{ .Vars }} {{ .Path }}'"
   }
 
@@ -118,6 +118,11 @@ build {
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     script          = "${path.root}/../scripts/build/configure-limits.sh"
+  }
+
+  provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    inline          = ["sudo mkdir -p /etc/cloud/templates"]
   }
 
   provisioner "file" {
