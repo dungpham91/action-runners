@@ -253,17 +253,6 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
-    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/post-build-validation.sh"]
-  }
-
-  provisioner "shell" {
-    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline           = ["/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"]
-  }
-
-  provisioner "shell" {
     execute_command    = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     pause_before       = "1m0s"
     scripts            = ["${path.root}/../scripts/build/cleanup.sh"]
