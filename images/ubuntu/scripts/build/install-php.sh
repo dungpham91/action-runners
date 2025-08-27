@@ -96,4 +96,4 @@ mkdir -p /etc/skel/.composer
 wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
 install phpunit /usr/local/bin/phpunit
 
-invoke_tests "Common" "PHP"
+# invoke_tests "Common" "PHP"

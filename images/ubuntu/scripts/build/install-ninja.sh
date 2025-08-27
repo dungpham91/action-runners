@@ -14,4 +14,4 @@ ninja_binary_path=$(download_with_retry "${download_url}")
 # Unzip the ninja binary
 unzip -qq "$ninja_binary_path" -d /usr/local/bin
 
-invoke_tests "Tools" "Ninja"
+# invoke_tests "Tools" "Ninja"

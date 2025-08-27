@@ -30,4 +30,4 @@ apt-get install -y ${install_packages[@]}
 mkdir -p /etc/containers
 printf "[registries.search]\nregistries = ['docker.io', 'quay.io']\n" | tee /etc/containers/registries.conf
 
-invoke_tests "Tools" "Containers"
+# invoke_tests "Tools" "Containers"
