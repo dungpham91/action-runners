@@ -42,13 +42,13 @@ Pin: origin packages.microsoft.com
 Pin-Priority: 1001
 EOF
 
-apt-get update
+apt-get -yq update
 
 for latest_package in ${latest_dotnet_packages[@]}; do
     echo "Determining if .NET Core ($latest_package) is installed"
     if ! dpkg -S $latest_package &> /dev/null; then
         echo "Could not find .NET Core ($latest_package), installing..."
-        apt-get install $latest_package
+        apt-get install -y $latest_package
     else
         echo ".NET Core ($latest_package) is already installed"
     fi
@@ -56,7 +56,7 @@ done
 
 rm /etc/apt/preferences.d/dotnet
 
-apt-get update
+apt-get -yq update
 
 # Install .NET SDK from home repository
 # Get list of all released SDKs from channels which are not end-of-life or preview

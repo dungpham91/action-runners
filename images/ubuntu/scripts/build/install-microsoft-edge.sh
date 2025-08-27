@@ -16,8 +16,8 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > $G
 # Specify an arch as Microsoft repository supports armhf and arm64 as well
 echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL stable main" > $REPO_PATH
 
-apt-get update
-apt-get install --no-install-recommends microsoft-edge-stable
+apt-get -yq update
+apt-get install -y --no-install-recommends microsoft-edge-stable
 
 rm $GPG_KEY
 rm $REPO_PATH

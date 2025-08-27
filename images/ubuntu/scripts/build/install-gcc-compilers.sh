@@ -11,7 +11,7 @@ versions=$(get_toolset_value '.gcc.versions[]')
 
 for version in ${versions[*]}; do
     echo "Installing $version..."
-    apt-get install $version
+    apt-get install -y $version
 done
 
 invoke_tests "Tools" "gcc"

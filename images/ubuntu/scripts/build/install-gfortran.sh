@@ -11,10 +11,10 @@ versions=$(get_toolset_value '.gfortran.versions[]')
 
 for version in ${versions[*]}; do
     echo "Installing $version..."
-    apt-get install $version
+    apt-get install -y $version
 done
 
 echo "Install versionless gfortran (latest)"
-apt-get install gfortran
+apt-get install -y gfortran
 
 invoke_tests "Tools" "gfortran"

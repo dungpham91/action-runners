@@ -5,7 +5,7 @@
 ################################################################################
 
 # Install Apache
-apt-get install apache2
+apt-get install -y apache2
 
 # Disable apache2.service
 systemctl is-active --quiet apache2.service && systemctl stop apache2.service

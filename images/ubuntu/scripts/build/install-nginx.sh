@@ -5,7 +5,7 @@
 ################################################################################
 
 # Install Nginx
-apt-get install nginx
+apt-get install -y nginx
 
 # Disable nginx.service
 systemctl is-active --quiet nginx.service && systemctl stop nginx.service

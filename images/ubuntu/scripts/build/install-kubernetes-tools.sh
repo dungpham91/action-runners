@@ -36,8 +36,8 @@ else
 fi
 
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
-apt-get update
-apt-get install kubectl
+apt-get -yq update
+apt-get install -y kubectl
 rm -f /etc/apt/sources.list.d/kubernetes.list
 
 # Install Helm

@@ -15,7 +15,7 @@ os_codename=$(lsb_release -cs)
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_KEY
 echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
-apt-get update
+apt-get -yq update
 
 # Install docker components which available via apt-get
 # Using toolsets keep installation order to install dependencies before the package in order to control versions
@@ -24,10 +24,10 @@ components=$(get_toolset_value '.docker.components[] .package')
 for package in $components; do
     version=$(get_toolset_value ".docker.components[] | select(.package == \"$package\") | .version")
     if [[ $version == "latest" ]]; then
-        apt-get install --no-install-recommends "$package"
+        apt-get install -y --no-install-recommends "$package"
     else
         version_string=$(apt-cache madison "$package" | awk '{ print $3 }' | grep "$version" | grep "$os_codename" | head -1)
-        apt-get install --no-install-recommends "${package}=${version_string}"
+        apt-get install -y --no-install-recommends "${package}=${version_string}"
     fi
 done
 

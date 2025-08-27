@@ -46,9 +46,9 @@ else
     cat /etc/apt/sources.list.d/ubuntu.sources
 fi
 
-apt-get update
+apt-get -yq update
 # Install jq
-apt-get install jq
+apt-get install -y jq
 
 if ! is_ubuntu24; then
     # Install apt-fast using quick-install.sh

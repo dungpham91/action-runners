@@ -13,8 +13,8 @@ curl -fsSL "${REPO_URL}/release.key" | gpg --dearmor -o $GPG_KEY
 echo "deb [trusted=yes] $REPO_URL ./" > $REPO_PATH
 
 # install heroku
-apt-get update
-apt-get install heroku
+apt-get -yq update
+apt-get install -y heroku
 
 # remove heroku's apt repository
 rm $REPO_PATH

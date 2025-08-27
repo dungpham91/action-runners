@@ -15,13 +15,13 @@ echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWOR
 export ACCEPT_EULA=Y
 
 # Install MySQL Client
-apt-get install mysql-client
+apt-get install -y mysql-client
 
 # Install MySQL Server
-apt-get install mysql-server
+apt-get install -y mysql-server
 
 # Install MySQL Dev tools
-apt-get install libmysqlclient-dev
+apt-get install -y libmysqlclient-dev
 
 # Disable mysql.service
 systemctl is-active --quiet mysql.service && systemctl stop mysql.service

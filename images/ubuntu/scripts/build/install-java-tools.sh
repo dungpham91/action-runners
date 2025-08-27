@@ -67,7 +67,7 @@ wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --
 echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/adoptium.list
 
 # Get all the updates from enabled repositories.
-apt-get update
+apt-get -yq update
 
 # While Ubuntu 24.04 binaries are not released in the Adoptium repo, we will not install Java
 defaultVersion=$(get_toolset_value '.java.default')
@@ -85,7 +85,7 @@ for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
 done
 
 # Install Ant
-apt-get install --no-install-recommends ant ant-optional
+apt-get install -y --no-install-recommends ant ant-optional
 set_etc_environment_variable "ANT_HOME" "/usr/share/ant"
 
 # Install Maven
