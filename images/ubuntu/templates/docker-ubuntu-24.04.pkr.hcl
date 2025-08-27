@@ -85,6 +85,11 @@ build {
   name = "ubuntu-24.04-actions"
   sources = ["source.docker.ubuntu"]
 
+  provisioner "shell" {
+    inline = ["apt-get update", "apt-get install -y build-essential git wget curl pkg-config libssl-dev"]
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+  }
+
   post-processor "docker-tag" {
     repository = "${var.artifact_image_repository}"
     tags = ["${var.artifact_image_tag}", "latest"]
