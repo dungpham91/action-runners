@@ -13,11 +13,6 @@ packer {
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
-variable "base_image_tag" {
-  type    = string
-  default = "latest"
-}
-
 variable "artifact_image_repository" {
   type    = string
   default = "ghcr.io/dungpham91/action-runners"
@@ -68,7 +63,7 @@ variable "install_password" {
 # Sources
 #------------------------------------------------------------------------------
 source "docker" "ubuntu" {
-  image  = "ghcr.io/actions/actions-runner:${var.base_image_tag}"
+  image  = "ubuntu:24.04"
   commit = true
   fix_upload_owner = true
   run_command = ["-d", "-i", "-t", "--", "{{.Image}}"]
@@ -86,7 +81,7 @@ build {
   sources = ["source.docker.ubuntu"]
 
   provisioner "shell" {
-    inline = ["apt-get update", "apt-get install -y build-essential git wget curl pkg-config libssl-dev"]
+    inline = ["apt-get update", "apt-get upgrade -y", "apt-get install -y build-essential git wget curl pkg-config libssl-dev apt-utils"]
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
   }
 
