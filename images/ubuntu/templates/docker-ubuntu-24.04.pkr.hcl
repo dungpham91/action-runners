@@ -81,10 +81,6 @@ build {
   sources = ["source.docker.ubuntu"]
 
   provisioner "shell" {
-    inline = ["echo 'Check GHA runner free space...', df -h"]
-  }
-
-  provisioner "shell" {
     inline = ["apt-get -yq update", "apt-get -yq upgrade", "apt-get install -y apt-utils build-essential sudo git wget curl pkg-config libssl-dev lsb-release"]
     execute_command = "sh -c '{{ .Vars }} {{ .Path }}'"
   }
@@ -250,11 +246,6 @@ build {
     pause_before       = "1m0s"
     scripts            = ["${path.root}/../scripts/build/cleanup.sh"]
     start_retry_timeout = "10m"
-  }
-
-  provisioner "shell" {
-    inline = ["echo 'Check the size of files in the container...', du -sh /"]
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
   }
 
   post-processor "docker-tag" {
