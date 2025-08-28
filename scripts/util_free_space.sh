@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
+# Use -eux to ensure the script stops on unexpected errors, but commands
+# have been adjusted to prevent unnecessary failures.
 set -eux
-
-echo "=============================================================================="
-echo "Freeing up disk space on CI system"
-echo "=============================================================================="
 
 df -h
 
 echo "Removing large APT packages (unrelated to Packer/Docker)"
-sudo apt-get remove -y \
+# Use --ignore-missing so the command doesn't fail if a package isn't installed.
+sudo apt-get remove -y --ignore-missing \
   '^ghc-8.*' \
   '^dotnet-.*' \
   '^llvm-.*' \
@@ -23,10 +22,14 @@ sudo apt-get remove -y \
   google-chrome-stable \
   microsoft-edge-stable
 
+# Automatically remove unneeded dependencies.
 sudo apt-get autoremove -y
+# Clear the local repository of retrieved package files.
 sudo apt-get clean
 
 echo "Removing large directories (unrelated to Packer/Docker)"
+# The '|| :' (or '|| true') ensures the rm command doesn't fail and stop the
+# script if one of the directories doesn't exist.
 sudo rm -rf \
   /usr/local/aws-sam-cil \
   /usr/local/julia* \
