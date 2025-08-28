@@ -2,7 +2,7 @@
 
 # Use -eux to ensure the script stops on unexpected errors, but commands
 # have been adjusted to prevent unnecessary failures.
-set -eux
+set -ux
 
 df -h
 
@@ -58,6 +58,6 @@ sudo rm -rf \
   /opt/hostedtoolcache/CodeQL \
   /opt/hostedtoolcache/go \
   /opt/hostedtoolcache/PyPy \
-  /opt/hostedtoolcache/node || :
+  /opt/hostedtoolcache/node || true
 
 df -h

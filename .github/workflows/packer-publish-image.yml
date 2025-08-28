@@ -24,10 +24,12 @@ jobs:
     steps:
       - name: Delete huge unnecessary tools folder
         run: |
+          echo "---Disk space before free---"
           df -h
           rm -rf /opt/hostedtoolcache
           cd /opt
           find . -maxdepth 1 -mindepth 1 '!' -path ./containerd '!' -path ./actionarchivecache '!' -path ./runner '!' -path ./runner-cache -exec rm -rf '{}' ';'
+          echo "---Disk space after free---"
           df -h
 
       - name: Checkout
