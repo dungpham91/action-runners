@@ -15,7 +15,7 @@ packer {
 #------------------------------------------------------------------------------
 variable "artifact_image_repository" {
   type    = string
-  default = "ghcr.io/dungpham91/action-runners"
+  default = "docker.io/dungpham91/action-runners"
 }
 
 variable "artifact_image_tag" {
