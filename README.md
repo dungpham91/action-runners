@@ -31,6 +31,8 @@ jobs:
       image: dungpham91/action-runners:latest
 ```
 
+> **Info:** You can check all built image tags at [Docker Hub](https://hub.docker.com/r/dungpham91/actions-runner/tags).
+
 ---
 
 ## ✨ Main Features
